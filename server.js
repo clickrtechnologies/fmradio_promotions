@@ -17,7 +17,7 @@ app.post("/log", function(req, res){
     
     fs.appendFileSync('./logs.log', req.body.msg+"\n");
 })
-const port = process.env.PORT || 3009;
+const port = process.env.PORT || 3011;
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {

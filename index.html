@@ -184,11 +184,9 @@
                     const promoName = params.get('promoName');
                     printLogs("Service=" + service + " pack=" + pack + " promoName=" + promoName + " for msisdn=" + mobileNumber);
 
-                    if (service === 'karaoke' && pack == 1 && promoName === 'kimia') {
-                        window.location.href = "/confirmpage?number=" + mobileNumber + "&service=karaoke&pack=1&promoName=kimia&clickId=" + params.get('clickId');
-                    } else if (service === 'karaoke' && pack == 2 && promoName === 'kimia') {
-                        window.location.href = "/confirmpage?number=" + mobileNumber + "&service=karaoke&pack=2&promoName=kimia&clickId=" + params.get('clickId');
-                    } else {
+                    if (service === 'fmradio') {
+                        window.location.href = "/confirmpage?number=" + mobileNumber + "&service=fmradio&pack="+pack+"&promoName="+promoName+"&clickId=" + params.get('clickId');
+                    }else {
                         window.location.href = "/404";
                     }
                 } else if (params.has('service') && !params.has('pack') && params.has('promoName')) {

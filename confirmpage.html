@@ -204,26 +204,28 @@
         //     },
         // });
 
+        confirmbtn();
+    
         function confirmbtn() {
             const params = new URLSearchParams(window.location.search);
             $(".a_tag").addClass("disable-click");
 
-            var packName;
-            if (params.get('pack') == 1) {
-                packName = "daily";
-            } else {
-                packName = "weekly";
-            }
+            var packName = params.get('pack');
+            // if (params.get('pack') == 1) {
+            //     packName = "daily";
+            // } else {
+            //     packName = "weekly";
+            // }
 
             $.ajax({
-                url: "http://mobbilewap.mtncongo.net:8080/congo/subunsubapi",
+                url: "http://mobbilewap.mtncongo.net:8080/congo/fmradiosubunsubapi",
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({
                     msisdn: params.get('number'),
                     packName: packName,
-                    renewflag: params.get('renewal'),
+                    renewflag: 1,
                     subunsubFlag: "S",
                     // serviceName: params.get('service'),
                     submode: "WAP",
