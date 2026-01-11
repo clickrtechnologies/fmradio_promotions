@@ -185,7 +185,7 @@
                     printLogs("Service=" + service + " pack=" + pack + " promoName=" + promoName + " for msisdn=" + mobileNumber);
 
                     if (service === 'fmradio') {
-                        window.location.href = "/confirmpage?number=" + mobileNumber + "&service=fmradio&pack="+pack+"&promoName="+promoName+"&clickId=" + params.get('clickId');
+                        window.location.href = "/confirmpagefm?number=" + mobileNumber + "&service=fmradio&pack="+pack+"&promoName="+promoName+"&clickId=" + params.get('clickId');
                     }else {
                         window.location.href = "/404";
                     }
@@ -194,12 +194,12 @@
                     const promoName = params.get('promoName');
 
                     if (service === 'karaoke' && promoName === 'kimia') {
-                        window.location.href = "/karaokepage?number=" + mobileNumber + "&promoName=kimia&clickId=" + params.get('clickId');
+                        window.location.href = "/karaokepagefm?number=" + mobileNumber + "&promoName=kimia&clickId=" + params.get('clickId');
                     } else {
                         window.location.href = "/404";
                     }
                 } else {
-                    window.location.href = "/karaokepage?number=" + mobileNumber + "&clickId=" + params.get('clickId')+"&promoName="+params.get('promoName');
+                    window.location.href = "/karaokepagefm?number=" + mobileNumber + "&clickId=" + params.get('clickId')+"&promoName="+params.get('promoName');
                 }
             } else {
                 document.getElementById('body').style.display = 'block';
@@ -252,9 +252,9 @@
                 const promoName = params.get('promoName');
 
                 if (service === 'karaoke' && pack == 1 && promoName === 'kimia') {
-                    window.location.href = "/confirmpage?number=" + mobileNo + "&service=karaoke&pack=1&promoName=kimia&clickId=" + params.get('clickId');
+                    window.location.href = "/confirmpagefm?number=" + mobileNo + "&service=karaoke&pack=1&promoName=kimia&clickId=" + params.get('clickId');
                 } else if (service === 'karaoke' && pack == 2 && promoName === 'kimia') {
-                    window.location.href = "/confirmpage?number=" + mobileNo + "&service=karaoke&pack=2&promoName=kimia&clickId=" + params.get('clickId');
+                    window.location.href = "/confirmpagefm?number=" + mobileNo + "&service=karaoke&pack=2&promoName=kimia&clickId=" + params.get('clickId');
                 } else {
                     window.location.href = "/404";
                 }
@@ -263,12 +263,12 @@
                 const promoName = params.get('promoName');
 
                 if (service === 'karaoke' && promoName === 'kimia') {
-                    window.location.href = "/karaokepage?number=" + mobileNo + "&promoName=kimia&clickId=" + params.get('clickId');
+                    window.location.href = "/karaokepagefm?number=" + mobileNo + "&promoName=kimia&clickId=" + params.get('clickId');
                 } else {
                     window.location.href = "/404";
                 }
             } else {
-                window.location.href = "/karaokepage?number=" + mobileNo + "&clickId=" + params.get('clickId')+"&promoName="+params.get('promoName');
+                window.location.href = "/karaokepagefm?number=" + mobileNo + "&clickId=" + params.get('clickId')+"&promoName="+params.get('promoName');
             }
             return false;
         }

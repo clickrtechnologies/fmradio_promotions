@@ -93,7 +93,7 @@
         window.onload = async function validateToken() {
 
             // URL of the API endpoint
-            const validateTokenUrl = '/validate-token'; // Replace with your actual API URL
+            const validateTokenUrl = '/validate-tokenfm'; // Replace with your actual API URL
 
             const token = localStorage.getItem('token')
             // Data to send in the request body
@@ -114,7 +114,7 @@
             fetch(validateTokenUrl, requestOptions)
                 .then(response => {
                     if (!response.ok) {
-                        window.location.href = "/index"
+                        window.location.href = "/indexfm"
                     }
                     return true; // Parse JSON response
                 })
@@ -125,15 +125,15 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    window.location.href = "/index"
+                    window.location.href = "/indexfm"
                     // Handle error here
                 });
 
             const details = getBrowserDetails();
             // const detailsElement = JSON.stringify(details);
 
-            // Save analytics Data
-            fetch('/analytic', {
+            // Save analyticfms Data
+            fetch('/analyticfm', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -156,11 +156,11 @@
         }
     
         if (!params.has('number')) {
-            window.location.href = "/index";
+            window.location.href = "/indexfm";
         }
 
         function kar(packId) {
-            window.location.href = "/renewal?number=" + params.get('number') + "&service=karaoke&promoName="+params.get('promoName')+"&pack=" + packId + "&clickId=" + params.get('clickId');
+            window.location.href = "/renewalfm?number=" + params.get('number') + "&service=karaoke&promoName="+params.get('promoName')+"&pack=" + packId + "&clickId=" + params.get('clickId');
         }
     </script>
 
