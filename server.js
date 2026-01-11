@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-var util = require('util');
 const app = express();
 var bodyParser = require('body-parser')
 const crypto = require('crypto');
@@ -12,9 +11,12 @@ const jwt = require('jsonwebtoken');
 app.use(bodyParser.json())
  
 // create application/x-www-form-urlencoded parser
-app.post("/log", function(req, res){
+// app.post("/log", function(req, res){
+//     console.log(req.body)
+//     fs.appendFileSync('./logs.log', req.body.msg+"\n");
+// })
+app.post("/logfm", function(req, res){
     console.log(req.body)
-    
     fs.appendFileSync('./logs.log', req.body.msg+"\n");
 })
 const port = process.env.PORT || 3011;
@@ -24,26 +26,37 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-app.get('/renewal', function(req, res) {
+// app.get('/renewal', function(req, res) {
+//     res.sendFile(path.join(__dirname, '/renewal.html'));
+// });
+app.get('/renewalfm', function(req, res) {
     res.sendFile(path.join(__dirname, '/renewal.html'));
 });
-app.get('/index', function(req, res) {
+// app.get('/index', function(req, res) {
+//     res.sendFile(path.join(__dirname, '/index.html'));
+// });
+app.get('/indexfm', function(req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
-
-app.get('/karaokepage', function(req, res) {
+// app.get('/karaokepage', function(req, res) {
+//     res.sendFile(path.join(__dirname, '/karaokepage.html'));
+// });
+app.get('/karaokepagefm', function(req, res) {
     res.sendFile(path.join(__dirname, '/karaokepage.html'));
 });
-
-app.get('/confirmpage', function(req, res) {
+// app.get('/confirmpage', function(req, res) {
+//     res.sendFile(path.join(__dirname, '/confirmpage.html'));
+// });
+app.get('/confirmpagefm', function(req, res) {
     res.sendFile(path.join(__dirname, '/confirmpage.html'));
 });
 
-
-app.get('/Thankyou', function(req, res) {
+// app.get('/Thankyou', function(req, res) {
+//     res.sendFile(path.join(__dirname, '/Thankyou.html'));
+// });
+app.get('/Thankyoufm', function(req, res) {
     res.sendFile(path.join(__dirname, '/Thankyou.html'));
 });
-
 
 app.get('/404', function(req, res) {
     res.sendFile(path.join(__dirname, '/404page.html'));
@@ -58,7 +71,8 @@ const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
 
     if (!token) {
-        return res.redirect('/index');
+        // return res.redirect('/index');
+        return res.redirect('/indexfm');
         //   return res.status(403).send('Token is r');
     }
 
@@ -73,7 +87,8 @@ const verifyToken = (req, res, next) => {
 };
 
 
-app.post("/saveData", verifyToken, (req, res) => {
+// app.post("/saveData", verifyToken, (req, res) => {
+app.post("/saveDatafm", verifyToken, (req, res) => {
     const db = mysql.createConnection({
         host: '10.119.22.200',
         user: 'root',
@@ -91,7 +106,7 @@ app.post("/saveData", verifyToken, (req, res) => {
         const sql = `INSERT INTO tbl_wap_sub_clicks (msisdn, packName, renewflag, subunsubFlag, submode, promoName, promoId, req_date) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, NOW())`;
         const values = [msisdn, packName, renewflag, subunsubFlag, submode, promoName, promoId];
-	console.log('Data to be inserted:', { msisdn, packName, renewflag, subunsubFlag, submode, promoName, promoId });
+	   console.log('Data to be inserted:', { msisdn, packName, renewflag, subunsubFlag, submode, promoName, promoId });
         db.query(sql, values, (err, result) => {
             if (err) {
                 console.error('Error inserting data:', err);
@@ -110,7 +125,8 @@ app.post("/saveData", verifyToken, (req, res) => {
 const secretKey = crypto.randomBytes(32).toString('hex');
 console.log(secretKey);
 // Endpoint to generate a token
-app.get('/generate-token', (req, res) => {
+// app.get('/generate-token', (req, res) => {
+app.get('/generate-tokenfm', (req, res) => {
 
     // Define payload (use static data or any data you prefer)
     const payload = {
@@ -133,7 +149,8 @@ app.get('/generate-token', (req, res) => {
 });
 
 // Validate Token API
-app.post('/validate-token', (req, res) => {
+// app.post('/validate-token', (req, res) => {
+app.post('/validate-tokenfm', (req, res) => {
     const token = req.body.token;
   
     if (!token) {
@@ -158,7 +175,8 @@ app.post('/validate-token', (req, res) => {
   });
 
 
-app.post("/analytic", verifyToken, (req, res) => {
+// app.post("/analytic", verifyToken, (req, res) => {
+app.post("/analyticfm", verifyToken, (req, res) => {
     const db = mysql.createConnection({
         host: '10.119.22.200',
         user: 'root',
